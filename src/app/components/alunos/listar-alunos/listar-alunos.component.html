@@ -1,0 +1,20 @@
+
+<div class="d-flex flex-column">
+    
+    <header class="d-inline-flex justify-content-between">
+        <div>
+            <strong class="col-sm-6">Nome: Jonas Góes </strong>
+            <span class="badge badge-warning"> 7 </span>
+        </div> 
+
+        <div>
+            <i class="col-sm-6">2017103223</i>
+        </div>
+    </header>
+
+    <main class="mt-4">
+        <button class="btn btn-light" (click)="exibirNotas()">Exibir</button>
+        <sgn-notas-aluno *ngIf="exibirNotasAluno"></sgn-notas-aluno>
+    </main>
+
+</div>
