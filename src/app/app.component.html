@@ -1,12 +1,26 @@
-<header>
-    <sgn-login></sgn-login>
-    <sgn-logado *ngIf="false"></sgn-logado>
-</header>
-<main class="d-flex">
-    <div class="col-md-4">
-        <sgn-cadastrar-aluno ></sgn-cadastrar-aluno>
+<div class="container-fluid">
+    <div  *ngIf="false;else logado">
+        <header>
+            <sgn-login></sgn-login>
+        </header>
+        <main>
+            
+        </main>
     </div>
-    <div class="col-md-8">
-        <sgn-listar-alunos></sgn-listar-alunos>
-    </div>
-</main>
+    <ng-template #logado class="container">
+        
+        <header>
+            <sgn-logado></sgn-logado>
+        </header>
+
+        <main class="d-flex">
+            <div class="col-md-4">
+                <sgn-cadastrar-aluno ></sgn-cadastrar-aluno>
+            </div>
+            <div class="col-md-8">
+                <sgn-listar-alunos></sgn-listar-alunos>
+            </div>
+        </main>
+
+    </ng-template>
+</div>
