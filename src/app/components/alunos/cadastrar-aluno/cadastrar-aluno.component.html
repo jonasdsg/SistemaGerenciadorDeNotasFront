@@ -1,20 +1,35 @@
 
-    <form >
-        <div class="d-flex flex-column">
+    <form [formGroup]="cadastroAlunoForm" >
+
+        <div class="d-flex flex-column" >
             <div class="form-group d-flex d-inline-flex">
-                <label class="form-control-label col-form-label col-sm-2"><strong>Nome</strong></label>
-                <input type="text" class="form-control ml-5">
+                <label class="form-control-label col-form-label col-sm-2">
+                    <strong>Nome</strong>
+                </label>
+                <input type="text" class="form-control ml-5" formControlName="nome">
             </div>
+            <small class="alert alert-warning text text-center d-block" 
+                *ngIf="cadastroAlunoForm.get('nome').errors?.required">
+                Campo obrigatório
+            </small>
             
             <div class="form-group d-flex d-inline-flex">
-                <label class="form-control-label col-form-label col-sm-2"><strong>Matricula</strong></label>
-                <input type="text" class="form-control ml-5">
+                <label class="form-control-label col-form-label col-sm-2">
+                    <strong>Matricula</strong>
+                </label>
+                <input type="text" class="form-control ml-5" formControlName="matricula">
             </div>
+            <small class="alert alert-warning text text-center d-block"
+                *ngIf="cadastroAlunoForm.get('matricula').errors?.required">
+                Campo obrigatório
+            </small>
         </div>
         
         <sgn-notas-aluno></sgn-notas-aluno>
-        <div class="row ">
-            <button class="btn btn-primary" id="cadastrar">Cadastrar</button>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-lg btn-primary" id="cadastrar"
+                [disabled]="cadastroAlunoForm.invalid">Cadastrar
+            </button>
         </div>
     </form> 
 

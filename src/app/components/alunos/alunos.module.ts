@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotasComponent } from './notas/notas.component';
 import { ListarAlunosComponent } from './listar-alunos/listar-alunos.component';
 import { CadastrarAlunoComponent } from './cadastrar-aluno/cadastrar-aluno.component';
@@ -19,6 +19,7 @@ import { NgModule } from '@angular/core';
     imports:[
         FormsModule,
         CommonModule,
+        ReactiveFormsModule,
     ]
 
 })
