@@ -1,17 +1,17 @@
 
 <ul class="list-group">
-    <li class="list-group-item list-group-item-action">
+    <li class="list-group-item list-group-item-action" *ngFor="let aluno of alunos">
 
         <div class="d-flex flex-column">
             
             <header class="d-inline-flex justify-content-between">
                 <div>
-                    <strong class="col-sm-6">Nome: Jonas Góes </strong>
-                    <span class="badge badge-warning"> 7 </span>
+                    <strong class="col-sm-6">Nome: {{ aluno._nome }} </strong>
+                    <span class="badge badge-warning"> {{ 10 }}  </span>
                 </div> 
         
                 <div>
-                    <i class="col-sm-6">2017103223</i>
+                    <i class="col-sm-6"> {{aluno._matricula}} </i>
                 </div>
             </header>
         

@@ -1,5 +1,6 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { ModeloAvaliacao } from './../../../interfaces/modelo-avaliacao.interface';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'sgn-notas-aluno',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotasComponent implements OnInit{
     
+    @Output() emissorDeNotas =  new EventEmitter();
     formNotasAluno:FormGroup;
     
     constructor(
@@ -15,11 +17,16 @@ export class NotasComponent implements OnInit{
 
     ngOnInit(): void {
         this.formNotasAluno = this.formBuilder.group({
-            aps1:[],
             av1:[],
-            aps2:[],
             av2:[],
             av3:[],
+            aps1:[],
+            aps2:[],
         })
+    }
+
+    emiteNotas(){
+        let notas = this.formNotasAluno.value;
+        this.emissorDeNotas.emit(notas as ModeloAvaliacao);
     }
 }

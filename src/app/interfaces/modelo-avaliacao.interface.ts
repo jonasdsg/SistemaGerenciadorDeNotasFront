@@ -1,4 +1,4 @@
-export interface ModeloAvaliacao{
+export class ModeloAvaliacao{
     av1:number;
     av2:number;
     av3:number;

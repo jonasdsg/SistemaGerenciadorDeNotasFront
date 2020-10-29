@@ -1,3 +1,5 @@
+import { AlunoModel } from './../../../models/Aluno.model';
+import { ModeloAvaliacao } from './../../../interfaces/modelo-avaliacao.interface';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -8,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CadastrarAlunoComponent implements OnInit{
     
     public cadastroAlunoForm: FormGroup;
-    
+    notas:ModeloAvaliacao;
     constructor(
         private formBuilder:FormBuilder,
     ){}
@@ -17,8 +19,21 @@ export class CadastrarAlunoComponent implements OnInit{
         this.cadastroAlunoForm = this.formBuilder.group({
             nome: ['',Validators.required],
             matricula: ['',Validators.required],
-            notas: [],
+        });
+    }
 
-        })
+    recebeNotasAluno(notas:ModeloAvaliacao){
+       
+        this.notas=notas;
+    }
+
+    salvarAluno(){
+        const cadastro = this.cadastroAlunoForm.value;
+        let aluno = new AlunoModel(cadastro.nome,cadastro.matricula);
+        aluno.notas = this.notas;
+        let arr= JSON.parse(localStorage.getItem('alunos'));
+        arr.push(aluno);
+        console.log(arr);
+        localStorage.setItem('alunos',JSON.stringify(arr));
     }
 }

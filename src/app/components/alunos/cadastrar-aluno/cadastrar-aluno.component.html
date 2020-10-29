@@ -1,5 +1,5 @@
 
-    <form [formGroup]="cadastroAlunoForm" >
+    <form [formGroup]="cadastroAlunoForm">
 
         <div class="d-flex flex-column" >
             <div class="form-group d-flex d-inline-flex">
@@ -25,9 +25,9 @@
             </small>
         </div>
         
-        <sgn-notas-aluno></sgn-notas-aluno>
+        <sgn-notas-aluno (emissorDeNotas)="recebeNotasAluno($event)"></sgn-notas-aluno>
         <div class="d-flex justify-content-center">
-            <button class="btn btn-lg btn-primary" id="cadastrar"
+            <button class="btn btn-lg btn-primary" id="cadastrar" (click)="salvarAluno()"
                 [disabled]="cadastroAlunoForm.invalid">Cadastrar
             </button>
         </div>
