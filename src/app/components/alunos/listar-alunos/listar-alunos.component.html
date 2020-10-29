@@ -11,13 +11,13 @@
                 </div> 
         
                 <div>
-                    <i class="col-sm-6"> {{aluno._matricula}} </i>
+                    <i class="col-sm-6"> {{ aluno._matricula }} </i>
                 </div>
             </header>
-        
+            
             <main class="mt-4">
                 <button class="btn btn-light" (click)="exibirNotas()">Exibir</button>
-                <sgn-notas-aluno *ngIf="exibirNotasAluno"></sgn-notas-aluno>
+                <sgn-notas-aluno *ngIf="exibirNotasAluno" [receberNotas]="aluno._notas"></sgn-notas-aluno>
             </main>
         
         </div>
