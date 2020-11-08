@@ -2,9 +2,9 @@ import { ModeloAvaliacao } from '../interfaces/modelo-avaliacao.interface';
 import { AvaliacaoInterface } from './../interfaces/avaliacao.interface';
 import { PessoaModel } from './Pessoa.model';
 
-export class AlunoModel extends PessoaModel implements AvaliacaoInterface{
+export class AlunoModel extends PessoaModel{
     
-    private _notas:ModeloAvaliacao;
+    public _notas:ModeloAvaliacao;
 
     constructor(
         public _nome:string,
@@ -13,7 +13,7 @@ export class AlunoModel extends PessoaModel implements AvaliacaoInterface{
         super(_nome,_matricula);
     }
     
-    set notas(notas:ModeloAvaliacao){
+    notas(notas:ModeloAvaliacao){
         this._notas = notas;
     }
     

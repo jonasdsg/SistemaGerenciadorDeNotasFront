@@ -1,3 +1,4 @@
+import { ListarAlunosService } from './listar-alunos.service';
 import { AlunoModel } from './../../../models/Aluno.model';
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
@@ -9,18 +10,14 @@ export class ListarAlunosComponent implements OnInit, OnChanges{
     @Input() alunos:AlunoModel[];
     public exibirNotasAluno:boolean = false;
 
-    constructor(){
-        this.alunos = <AlunoModel[]> JSON.parse(localStorage.getItem('alunos'));
+    constructor(listarAlunosService:ListarAlunosService){
+        this.alunos = listarAlunosService.Alunos;
     }
     
     ngOnChanges(changes: SimpleChanges): void {
-        let a = new AlunoModel(this.alunos[0]._nome,this.alunos[0]._matricula);
-        a.notas = this.alunos[0].notas;
-        console.log(a.av3())
     }
     
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
     exibirNotas(){
         if(this.exibirNotasAluno)

@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CadastrarAlunoComponent implements OnInit{
     
     public cadastroAlunoForm: FormGroup;
-    notas:ModeloAvaliacao;
+    public notas:ModeloAvaliacao;
     constructor(
         private formBuilder:FormBuilder,
     ){}
@@ -30,7 +30,7 @@ export class CadastrarAlunoComponent implements OnInit{
     salvarAluno(){
         const cadastro = this.cadastroAlunoForm.value;
         let aluno = new AlunoModel(cadastro.nome,cadastro.matricula);
-        aluno.notas = this.notas;
+        aluno._notas = this.notas;
         let arr= JSON.parse(localStorage.getItem('alunos'));
         arr.push(aluno);
         console.log(arr);
