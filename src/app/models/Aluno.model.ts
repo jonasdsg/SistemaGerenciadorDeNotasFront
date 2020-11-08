@@ -29,10 +29,11 @@ export class AlunoModel extends PessoaModel{
     }
     
     media(): number {
+        const notas = this._notas;
         return this.maior(
-            Number(this.av1())+Number(this.av2),
-            Number(this.av1())+Number(this.av3),
-            Number(this.av2())+Number(this.av3)
+            (notas.aps1+notas.av1+notas.aps2+notas.av2)/2,
+            (notas.aps1+notas.av1+notas.av3)/2,
+            (notas.av2+notas.av3)/2
         );
     }
 

@@ -17,7 +17,9 @@ export class ListarAlunosComponent implements OnInit, OnChanges{
     ngOnChanges(changes: SimpleChanges): void {
     }
     
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        console.log(this.alunos[0].media())
+    }
 
     exibirNotas(){
         if(this.exibirNotasAluno)
