@@ -1,5 +1,5 @@
 
-<ul class="list-group">
+<ul class="list-group" *ngIf="alunos">
     <li class="list-group-item list-group-item-action" *ngFor="let aluno of alunos">
 
         <div class="d-flex flex-column">
@@ -7,7 +7,7 @@
             <header class="d-inline-flex justify-content-between">
                 <div>
                     <strong class="col-sm-6">Nome: {{ aluno._nome }} </strong>
-                    <span class="badge badge-warning"> {{ aluno.media }}  </span>
+                    <span class="badge " [ngClass]=" media(aluno._notas)>7 ? 'badge-success' : 'badge-danger' "> {{ media(aluno._notas) }}  </span>
                 </div> 
         
                 <div>

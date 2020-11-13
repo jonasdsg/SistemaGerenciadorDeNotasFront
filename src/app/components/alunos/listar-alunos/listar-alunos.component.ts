@@ -17,9 +17,7 @@ export class ListarAlunosComponent implements OnInit, OnChanges{
     ngOnChanges(changes: SimpleChanges): void {
     }
     
-    ngOnInit(): void {
-        console.log(this.alunos[0].media())
-    }
+    ngOnInit(): void {}
 
     exibirNotas(){
         if(this.exibirNotasAluno)
@@ -27,4 +25,25 @@ export class ListarAlunosComponent implements OnInit, OnChanges{
         else
             this.exibirNotasAluno = true;
     }
+
+    media(notas): number {
+        
+        
+        return this.maior(
+            (Number(notas.aps1)+Number(notas.av1)+Number(notas.aps2)+Number(notas.av2))/2,
+            (Number(notas.aps1)+Number(notas.av1)+Number(notas.av3))/2,
+            (Number(notas.av2)+Number(notas.av3))/2
+        );
+    }
+
+    maior(...soma:Array<number>): number {
+        console.log(soma)
+        let maior = soma[0];
+        for(let i = 0; i < soma.length; i++){
+            if(maior<soma[i])
+                maior = soma[i];
+        }
+        return maior;
+    }
+    
 }

@@ -31,9 +31,17 @@ export class CadastrarAlunoComponent implements OnInit{
         const cadastro = this.cadastroAlunoForm.value;
         let aluno = new AlunoModel(cadastro.nome,cadastro.matricula);
         aluno._notas = this.notas;
-        let arr= JSON.parse(localStorage.getItem('alunos'));
-        arr.push(aluno);
-        console.log(arr);
-        localStorage.setItem('alunos',JSON.stringify(arr));
+        let save = JSON.parse(localStorage.getItem('alunos'));
+        if(save){
+            let arr = [];
+            arr = save;
+            arr.push(aluno);
+            localStorage.setItem('alunos',JSON.stringify(arr));
+        }
+        else{
+            let arr= [];
+            arr.push(aluno)
+            localStorage.setItem('alunos',JSON.stringify(arr));
+        }
     }
 }
