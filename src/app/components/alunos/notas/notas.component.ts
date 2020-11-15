@@ -30,8 +30,6 @@ export class NotasComponent implements OnChanges, OnInit{
     }
     
     ngOnChanges(changes: SimpleChanges): void {
-        console.log(changes)
-        console.log(this.receberNotas)
         if(!this.formNotasAluno){
             this.formNotasAluno = this.formBuilder.group({
                 av1:[this.receberNotas.av1],
@@ -41,7 +39,6 @@ export class NotasComponent implements OnChanges, OnInit{
                 aps2:[this.receberNotas.aps2],
             })
         }
-        console.log(this.formNotasAluno)
     }
 
 

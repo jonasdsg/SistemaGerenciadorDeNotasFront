@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div  *ngIf="false;else logado">
+    <div  *ngIf="!estaLogado();else logado">
         <header>
             <sgn-login></sgn-login>
         </header>

@@ -9,9 +9,10 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 export class ListarAlunosComponent implements OnInit, OnChanges{
     @Input() alunos:AlunoModel[];
     public exibirNotasAluno:boolean = false;
+    public exibirNotasAlunoNome:string = '';
 
-    constructor(listarAlunosService:ListarAlunosService){
-        this.alunos = listarAlunosService.Alunos;
+    constructor(private listarAlunosService:ListarAlunosService){
+        this.alunos = this.listarAlunosService.Alunos;
     }
     
     ngOnChanges(changes: SimpleChanges): void {
@@ -19,11 +20,16 @@ export class ListarAlunosComponent implements OnInit, OnChanges{
     
     ngOnInit(): void {}
 
-    exibirNotas(){
+    exibirNotas(nome){
+        this.exibirNotasAlunoNome = nome;
         if(this.exibirNotasAluno)
             this.exibirNotasAluno = false;
         else
             this.exibirNotasAluno = true;
+    }
+
+    delete(matricula){
+        this.listarAlunosService.removeAluno(matricula)
     }
 
     media(notas): number {
