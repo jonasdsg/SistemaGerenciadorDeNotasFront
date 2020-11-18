@@ -4,6 +4,7 @@ import { NotasComponent } from './notas/notas.component';
 import { ListarAlunosComponent } from './listar-alunos/listar-alunos.component';
 import { CadastrarAlunoComponent } from './cadastrar-aluno/cadastrar-aluno.component';
 import { NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 
 @NgModule({
     declarations:[
@@ -20,6 +21,7 @@ import { NgModule } from '@angular/core';
         FormsModule,
         CommonModule,
         ReactiveFormsModule,
+        HttpClientModule
     ]
 
 })

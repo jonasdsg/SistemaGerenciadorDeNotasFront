@@ -1,5 +1,5 @@
 import { ListarAlunosService } from './listar-alunos.service';
-import { AlunoModel } from './../../../models/Aluno.model';
+import { AlunoModel, AlunosLista } from './../../../models/Aluno.model';
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
@@ -7,12 +7,17 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
     templateUrl: './listar-alunos.component.html',
 })
 export class ListarAlunosComponent implements OnInit, OnChanges{
-    @Input() alunos:AlunoModel[];
+    @Input() alunos:Array<AlunoModel>;
     public exibirNotasAluno:boolean = false;
     public exibirNotasAlunoNome:string = '';
 
     constructor(private listarAlunosService:ListarAlunosService){
-        this.alunos = this.listarAlunosService.Alunos;
+        this.listarAlunosService.Alunos
+            .subscribe((alunos:AlunosLista)=>{
+
+            this.alunos = alunos; 
+            console.log(alunos.length)
+        });
     }
     
     ngOnChanges(changes: SimpleChanges): void {
@@ -43,7 +48,6 @@ export class ListarAlunosComponent implements OnInit, OnChanges{
     }
 
     maior(...soma:Array<number>): number {
-        console.log(soma)
         let maior = soma[0];
         for(let i = 0; i < soma.length; i++){
             if(maior<soma[i])

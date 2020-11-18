@@ -1,6 +1,6 @@
+import { AvaliacaoModel } from '../../../models/Avaliacao.model';
 import { ListarAlunosService } from './../listar-alunos/listar-alunos.service';
 import { AlunoModel } from './../../../models/Aluno.model';
-import { ModeloAvaliacao } from './../../../interfaces/modelo-avaliacao.interface';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CadastrarAlunoComponent implements OnInit{
     
     public cadastroAlunoForm: FormGroup;
-    public notas:ModeloAvaliacao;
+    public notas:AvaliacaoModel;
     constructor(
         private service:ListarAlunosService,
         private formBuilder:FormBuilder,
@@ -24,16 +24,13 @@ export class CadastrarAlunoComponent implements OnInit{
         });
     }
 
-    recebeNotasAluno(notas:ModeloAvaliacao){
-       
+    recebeNotasAluno(notas:AvaliacaoModel){
         this.notas=notas;
     }
 
     salvarAluno(){
-        const cadastro = this.cadastroAlunoForm.value;
-        let aluno = new AlunoModel(cadastro.nome,cadastro.matricula);
-        aluno._notas = this.notas;
-        this.service.adicionarAlunos(aluno);
+        const cadastro:AlunoModel = this.cadastroAlunoForm.value;
+        this.service.adicionarAlunos(cadastro);
         this.cadastroAlunoForm.reset();
     }
 }

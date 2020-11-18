@@ -1,5 +1,5 @@
-import { ModeloAvaliacao } from './../../../interfaces/modelo-avaliacao.interface';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { AvaliacaoModel } from './../../../models/Avaliacao.model';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, EventEmitter, OnInit, Output, OnChanges, SimpleChanges, Input, AfterViewInit } from '@angular/core';
 
 @Component({
@@ -10,7 +10,7 @@ export class NotasComponent implements OnChanges, OnInit{
     
     @Output() emissorDeNotas =  new EventEmitter();
     formNotasAluno:FormGroup;
-    @Input() receberNotas:ModeloAvaliacao;
+    @Input() receberNotas:AvaliacaoModel;
 
     constructor(
         private formBuilder:FormBuilder){
@@ -43,7 +43,7 @@ export class NotasComponent implements OnChanges, OnInit{
 
 
     emiteNotas(){
-        let notas = this.formNotasAluno.value;
-        this.emissorDeNotas.emit(notas as ModeloAvaliacao);
+        let notas:AvaliacaoModel = this.formNotasAluno.value;
+        this.emissorDeNotas.emit(notas);
     }
 }

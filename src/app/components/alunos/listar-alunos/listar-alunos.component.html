@@ -6,24 +6,24 @@
             
             <header class="d-inline-flex justify-content-between">
                 <div>
-                    <strong class="col-sm-6">Nome: {{ aluno._nome }} </strong>
+                    <strong class="col-sm-6">Nome: {{ aluno.nome }} </strong>
                     <span class="badge " 
-                        [ngClass]=" media(aluno._notas)>7 ? 'badge-success' : media(aluno._notas)==7 ? 'badge-warning' : 'badge-danger' "> {{ media(aluno._notas) }} 
+                        [ngClass]=" media(aluno.avaliacao)>7 ? 'badge-success' : media(aluno.avaliacao)==7 ? 'badge-warning' : 'badge-danger' "> {{ media(aluno.avaliacao) }} 
                     </span>
                 </div> 
         
                 <div>
-                    <i class="col-sm-6"> {{ aluno._matricula }} </i>
+                    <i class="col-sm-6"> {{ aluno.matricula }} </i>
                     <button class="btn btn-danger btn-sm" (click)="delete(aluno._matricula)">delete</button>
                 </div>
             </header>
             
             <main class="mt-4">
     
-                <button class="btn btn-secondary" (click)="exibirNotas(aluno._nome)">Exibir</button>
+                <button class="btn btn-secondary" (click)="exibirNotas(aluno.nome)">Exibir</button>
                 <sgn-notas-aluno 
-                    *ngIf="exibirNotasAluno && exibirNotasAlunoNome==aluno._nome" 
-                    [receberNotas]="aluno._notas">
+                    *ngIf="exibirNotasAluno && exibirNotasAlunoNome==aluno.nome" 
+                    [receberNotas]="aluno.avaliacao">
                 </sgn-notas-aluno>
             </main>
         
