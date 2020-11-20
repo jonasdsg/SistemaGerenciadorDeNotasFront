@@ -12,12 +12,7 @@ export class ListarAlunosComponent implements OnInit, OnChanges{
     public exibirNotasAlunoNome:string = '';
 
     constructor(private listarAlunosService:ListarAlunosService){
-        this.listarAlunosService.Alunos
-            .subscribe((alunos:AlunosLista)=>{
-
-            this.alunos = alunos; 
-            console.log(alunos.length)
-        });
+        this.alunos = this.listarAlunosService.Alunos;
     }
     
     ngOnChanges(changes: SimpleChanges): void {

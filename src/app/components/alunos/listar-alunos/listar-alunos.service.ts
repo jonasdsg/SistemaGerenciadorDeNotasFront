@@ -1,38 +1,42 @@
 import { AlunoModel, AlunosLista } from './../../../models/Aluno.model';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 @Injectable({
     providedIn: 'root',
 })
 export class ListarAlunosService{
-    private alunos:any;
-    private tmp = "[{\"_nome\":\"Jonas\",\"_matricula\":\"234929349239492\",\"_notas\":{\"av1\":\"6\",\"av2\":\"8\",\"av3\":\"9\",\"aps1\":\"2\",\"aps2\":\"1\"}},{\"_nome\":\"Maria\",\"_matricula\":\"2323232323\",\"_notas\":{\"av1\":\"2\",\"av2\":\"2\",\"av3\":\"7\",\"aps1\":\"2\",\"aps2\":\"3\"}},{\"_nome\":\"Carla\",\"_matricula\":\"338272727281\",\"_notas\":{\"av1\":\"6\",\"av2\":\"8\",\"av3\":\"7\",\"aps1\":\"1\",\"aps2\":\"2\"}},{\"_nome\":\"Cirilo\",\"_matricula\":\"272362837436\",\"_notas\":{\"av1\":\"8\",\"av2\":\"4\",\"av3\":\"2\",\"aps1\":\"2\",\"aps2\":\"0\"}}]";
-    constructor(private http:HttpClient){
-        this.alunos = this.http.get('http://localhost:8080/alunos');
-    }
-    get Alunos():Observable<AlunosLista>{
+    private alunos:AlunoModel[] = [];
+    private URL:string = 'http://localhost:8080/alunos';
+    private httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      }
+    constructor(private http:HttpClient){}
+
+    get Alunos(): Array<AlunoModel>{
+        this.http.get(this.URL).subscribe((alunos)=>{
+            let array = alunos as AlunosLista;
+            array.forEach(aluno=>this.alunos.push(aluno as AlunoModel))
+        })
         return this.alunos;
+     
     }
 
-    removeAluno(matricula):boolean{
-        let removed:boolean = false;
-        this.alunos.forEach(aluno => {
-            if(aluno._matricula==matricula){
-                this.alunos.splice(this.alunos.indexOf(aluno),1);
-                removed = true;
-            }
+    removeAluno(matricula:string){
+        let al:AlunoModel;
+        this.alunos.forEach(aluno=>{
+            if(aluno.matricula==matricula)
+                al = aluno;
         })
-        return removed;
+        this.alunos.splice(this.alunos.indexOf(al),1);
+        return this.http.delete(`${this.URL}\\${matricula}`,this.httpOptions).subscribe()
     }
 
     adicionarAlunos(aluno:AlunoModel):boolean{
-        if(aluno){
-            this.alunos.push(aluno);
-            return true;
-        }
-        return false;
+        this.alunos.push(aluno);
+        this.http.post<AlunoModel>(this.URL,JSON.stringify(aluno),this.httpOptions).subscribe(
+        );
+        return true;
     }
     
 }

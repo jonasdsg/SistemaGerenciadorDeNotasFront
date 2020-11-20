@@ -1,8 +1,8 @@
-import { AvaliacaoModel } from '../../../models/Avaliacao.model';
 import { ListarAlunosService } from './../listar-alunos/listar-alunos.service';
 import { AlunoModel } from './../../../models/Aluno.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AvaliacaoModel } from 'src/app/models/Avaliacao.model';
 
 @Component({
     selector: 'sgn-cadastrar-aluno',
@@ -30,6 +30,7 @@ export class CadastrarAlunoComponent implements OnInit{
 
     salvarAluno(){
         const cadastro:AlunoModel = this.cadastroAlunoForm.value;
+        cadastro.avaliacao = this.notas;
         this.service.adicionarAlunos(cadastro);
         this.cadastroAlunoForm.reset();
     }
