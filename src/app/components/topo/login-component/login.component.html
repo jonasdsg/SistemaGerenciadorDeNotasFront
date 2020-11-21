@@ -20,6 +20,14 @@
         </form>
     
     </header>
-    
+    <div class="text text-center ">
+        <p class="alert alert-warning" *ngIf="senhaInvalida" role="alert">
+            Usuário ou Senha Inválidos
+        </p>
+    </div>
 </div>
 <hr>
+<div class="text text-center">
+    <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOViAiC9gpHYcEWRWM9z9hVqqwPXedv2gRMA&usqp=CAU" alt="facepalm" *ngIf="senhaInvalida">
+    <p>A senha está no arquivo leia-me.txt</p>
+</div>

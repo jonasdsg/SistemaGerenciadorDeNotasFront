@@ -6,11 +6,11 @@ import { Component } from '@angular/core';
     templateUrl: './login.component.html',
 })
 export class LoginComponent{ 
-    
-    public usuario:string='default';
-    public senha:string='default';
+    public senhaInvalida:boolean = false;
+    public usuario:string='';
+    public senha:string='';
     constructor(private loginService:LoginService){}
     logar(){
-        this.loginService.validarLogin(this.usuario,this.senha);
+        this.senhaInvalida = !this.loginService.validarLogin(this.usuario,this.senha);
     }
 }
